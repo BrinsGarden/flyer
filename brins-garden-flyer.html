@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brin's Garden — Starter Kits</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green-dark: #2d5a27;
+    --green-mid: #4a8c3f;
+    --green-light: #7dba6f;
+    --cream: #fdf8ee;
+    --warm-white: #fffdf7;
+    --gold: #d4a017;
+    --gold-light: #f0c040;
+    --brown: #5c3d1e;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Lato', sans-serif;
+    background: #e8e0d0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 30px 20px;
+  }
+
+  .flyer {
+    background: var(--cream);
+    width: 100%;
+    max-width: 780px;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.25);
+    position: relative;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: var(--green-dark);
+    padding: 36px 30px 28px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -40px; left: -40px; right: -40px; bottom: -10px;
+    background: radial-gradient(ellipse at 50% 0%, #3d7a32 0%, var(--green-dark) 70%);
+    z-index: 0;
+  }
+  .header-inner { position: relative; z-index: 1; }
+  .leaf-row { font-size: 1.4rem; letter-spacing: 6px; margin-bottom: 6px; opacity: 0.7; }
+  .brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.4rem;
+    font-weight: 900;
+    color: var(--gold-light);
+    line-height: 1;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.3);
+    letter-spacing: 2px;
+  }
+  .brand-sub {
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.65);
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    margin-top: 6px;
+  }
+  .divider-gold {
+    width: 80px; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 14px auto;
+  }
+  .tagline {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: rgba(255,255,255,0.85);
+    font-size: 1.05rem;
+  }
+
+  /* ── INTRO BANNER ── */
+  .intro-banner {
+    background: var(--green-mid);
+    color: white;
+    text-align: center;
+    padding: 14px 24px;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+  .intro-banner span { color: var(--gold-light); }
+
+  /* ── FLOWERS GRID ── */
+  .flowers-section {
+    padding: 28px 24px 20px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--green-dark);
+    text-align: center;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    justify-content: center;
+  }
+  .section-title::before, .section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--green-light));
+  }
+  .section-title::after {
+    background: linear-gradient(90deg, var(--green-light), transparent);
+  }
+
+  .flowers-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  @media (max-width: 540px) {
+    .flowers-grid { grid-template-columns: 1fr; }
+    .brand { font-size: 2.4rem; }
+  }
+
+  .flower-card {
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #e0d8c8;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  }
+  .flower-img-wrap {
+    width: 100%;
+    height: 160px;
+    overflow: hidden;
+    position: relative;
+    background: #f0ede5;
+  }
+  .flower-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .flower-emoji-fallback {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 5rem;
+  }
+  .flower-label {
+    background: var(--green-dark);
+    color: white;
+    font-family: 'Playfair Display', serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    padding: 7px 12px;
+    text-align: center;
+  }
+  .flower-desc {
+    padding: 10px 12px;
+    font-size: 0.78rem;
+    color: #555;
+    line-height: 1.5;
+    text-align: center;
+    font-style: italic;
+  }
+
+  /* ── PRICING ── */
+  .pricing-section {
+    background: var(--green-dark);
+    color: white;
+    padding: 24px 28px;
+    margin: 0 0 0 0;
+  }
+  .pricing-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: var(--gold-light);
+    text-align: center;
+    margin-bottom: 18px;
+  }
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  @media (max-width: 480px) { .pricing-grid { grid-template-columns: 1fr; } }
+
+  .price-card {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 8px;
+    padding: 14px;
+    text-align: center;
+  }
+  .price-amount {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--gold-light);
+    line-height: 1;
+  }
+  .price-label {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.7);
+    margin-top: 4px;
+    line-height: 1.4;
+  }
+
+  .pricing-note {
+    background: rgba(255,255,255,0.06);
+    border-radius: 6px;
+    padding: 10px 14px;
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.8);
+    text-align: center;
+    line-height: 1.5;
+  }
+  .pricing-note strong { color: var(--gold-light); }
+
+  /* ── WHATS INCLUDED ── */
+  .included-section {
+    padding: 24px 28px;
+    background: var(--warm-white);
+  }
+  .included-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: var(--green-dark);
+    text-align: center;
+    margin-bottom: 16px;
+  }
+  .included-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+  @media (max-width: 500px) { .included-grid { grid-template-columns: 1fr 1fr; } }
+
+  .included-item {
+    text-align: center;
+    padding: 12px 8px;
+    background: white;
+    border-radius: 8px;
+    border: 1px solid #e8e0cc;
+  }
+  .included-item .icon { font-size: 1.8rem; }
+  .included-item p { font-size: 0.74rem; color: #555; margin-top: 6px; line-height: 1.4; font-weight: 700; color: var(--brown); }
+  .included-item small { font-size: 0.68rem; color: #888; font-weight: 400; display: block; margin-top: 2px; }
+
+  /* ── SOIL CHOICE ── */
+  .choice-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  .choice-pill {
+    flex: 1;
+    background: var(--green-mid);
+    color: white;
+    border-radius: 6px;
+    padding: 10px;
+    text-align: center;
+    font-size: 0.8rem;
+    font-weight: 700;
+  }
+  .choice-pill .pill-icon { font-size: 1.5rem; display: block; margin-bottom: 4px; }
+
+  /* ── INSTRUCTIONS ── */
+  .instructions-bar {
+    background: #f5f0e8;
+    border: 1px dashed #c8b88a;
+    border-radius: 8px;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .instructions-bar .qr-placeholder {
+    width: 56px; height: 56px;
+    background: var(--green-dark);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    flex-shrink: 0;
+  }
+  .instructions-bar p { font-size: 0.8rem; color: #555; line-height: 1.5; flex: 1; }
+  .instructions-bar p strong { color: var(--green-dark); }
+
+  /* ── FOOTER ── */
+  .footer {
+    background: var(--brown);
+    color: rgba(255,255,255,0.7);
+    text-align: center;
+    padding: 14px;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+  }
+  .footer strong { color: var(--gold-light); }
+</style>
+</head>
+<body>
+<div class="flyer">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-inner">
+      <div class="leaf-row">🌿 🌸 🌿</div>
+      <div class="brand">Brin's Garden</div>
+      <div class="brand-sub">Seed Starter Kits</div>
+      <div class="divider-gold"></div>
+      <div class="tagline">Everything you need to grow something beautiful</div>
+    </div>
+  </div>
+
+  <!-- INTRO BANNER -->
+  <div class="intro-banner">
+    Kits start at just <span>$5</span> — Choose your flowers, grow at home!
+  </div>
+
+  <!-- FLOWER CARDS -->
+  <div class="flowers-section">
+    <div class="section-title">Available Varieties</div>
+    <div class="flowers-grid">
+
+      <div class="flower-card">
+        <div class="flower-img-wrap">
+          <div class="flower-emoji-fallback">🌸</div>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Tropaeolum_majus_-_3.jpg/640px-Tropaeolum_majus_-_3.jpg" alt="Nasturtium" onerror="this.style.display='none'">
+        </div>
+        <div class="flower-label">Nasturtium — Jewel Blend</div>
+        <div class="flower-desc">Vibrant climbing blooms in red, orange & yellow. Fully edible flowers with a peppery kick!</div>
+      </div>
+
+      <div class="flower-card">
+        <div class="flower-img-wrap">
+          <div class="flower-emoji-fallback">🌼</div>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Cosmos_sulphureus_flowers.jpg/640px-Cosmos_sulphureus_flowers.jpg" alt="Lemon Cosmos" onerror="this.style.display='none'">
+        </div>
+        <div class="flower-label">Dwarf Lemon Cosmos</div>
+        <div class="flower-desc">Bright golden-yellow blooms on compact plants. Heat tolerant & a favorite of butterflies.</div>
+      </div>
+
+      <div class="flower-card">
+        <div class="flower-img-wrap">
+          <div class="flower-emoji-fallback">🌻</div>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Tagetes_erecta_flowers.jpg/640px-Tagetes_erecta_flowers.jpg" alt="African Marigold" onerror="this.style.display='none'">
+        </div>
+        <div class="flower-label">African Marigold — Crackerjack</div>
+        <div class="flower-desc">Bold orange & yellow pompom blooms. Naturally repels garden pests. Easy & rewarding!</div>
+      </div>
+
+      <div class="flower-card">
+        <div class="flower-img-wrap">
+          <div class="flower-emoji-fallback">🌻</div>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Sunflower_sky_backdrop.jpg/640px-Sunflower_sky_backdrop.jpg" alt="Teddy Bear Sunflower" onerror="this.style.display='none'">
+        </div>
+        <div class="flower-label">Dwarf Teddy Bear Sunflower</div>
+        <div class="flower-desc">Fluffy, pollen-free double blooms on compact plants. Perfect for containers & kids!</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- PRICING -->
+  <div class="pricing-section">
+    <div class="pricing-title">💐 Kit Pricing</div>
+    <div class="pricing-grid">
+      <div class="price-card">
+        <div class="price-amount">$5</div>
+        <div class="price-label">Starter Kit<br>1 seed variety + full kit</div>
+      </div>
+      <div class="price-card">
+        <div class="price-amount">+$2</div>
+        <div class="price-label">Per additional<br>seed variety added</div>
+      </div>
+    </div>
+    <div class="pricing-note">
+      Mix and match as many varieties as you like!<br>
+      <strong>2 varieties = $7 &nbsp;·&nbsp; 3 varieties = $9 &nbsp;·&nbsp; All 4 = $11</strong>
+    </div>
+  </div>
+
+  <!-- WHAT'S INCLUDED -->
+  <div class="included-section">
+    <div class="included-title">Every Kit Includes</div>
+    <div class="included-grid">
+      <div class="included-item">
+        <div class="icon">🌱</div>
+        <p>Seeds of Choice</p>
+        <small>Your selected varieties</small>
+      </div>
+      <div class="included-item">
+        <div class="icon">🪴</div>
+        <p>Small Planter</p>
+        <small>With clear plastic dome</small>
+      </div>
+      <div class="included-item">
+        <div class="icon">📱</div>
+        <p>QR Code Card</p>
+        <small>Grow & care guide</small>
+      </div>
+    </div>
+
+    <!-- SOIL CHOICE -->
+    <div class="included-title" style="font-size:1rem; margin-bottom:10px;">Choose Your Growing Medium</div>
+    <div class="choice-row">
+      <div class="choice-pill">
+        <span class="pill-icon">💧</span>
+        Peat Pellets
+      </div>
+      <div class="choice-pill" style="background:#7a5c38;">
+        <span class="pill-icon">🌍</span>
+        Seed Starting Soil
+      </div>
+    </div>
+
+    <!-- INSTRUCTIONS -->
+    <div class="instructions-bar">
+      <div class="qr-placeholder">📲</div>
+      <p>
+        <strong>Growing Instructions:</strong> Every kit includes a QR code card linking to full germination, grow & care instructions for your flowers.<br>
+        Prefer paper? <strong>Printed instructions available for +$1</strong> — just ask when ordering!
+      </p>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <strong>Brin's Garden</strong> &nbsp;·&nbsp; Lake & McHenry County, IL &nbsp;·&nbsp; Scan. Plant. Grow. 🌿
+  </div>
+
+</div>
+</body>
+</html>
